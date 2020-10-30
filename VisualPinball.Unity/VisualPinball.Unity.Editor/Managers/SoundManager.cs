@@ -113,7 +113,7 @@ namespace VisualPinball.Unity.Editor
 			}
 		}
 
-		protected override void OnEnable()
+		public override void OnEnable()
 		{
 			titleContent = new GUIContent("Sound Manager", EditorGUIUtility.IconContent("SceneViewAudio").image);
 			_iconContent = new GUIContent() {
@@ -130,12 +130,13 @@ namespace VisualPinball.Unity.Editor
 			SceneView.duringSceneGui += OnSceneGUI;
 		}
 
-		protected void OnDisable()
+		public override void OnDisable()
 		{
 			GameObject.DestroyImmediate(_audioSource);
 			_audioSource = null;
 			_audioSourceComp = null;
 			SceneView.duringSceneGui -= OnSceneGUI;
+			base.OnDisable();
 		}
 
 		protected override void OnDataDetailGUI()
